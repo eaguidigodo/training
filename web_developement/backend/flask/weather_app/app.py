@@ -21,7 +21,7 @@ def search_city():
         response = requests.get(url).json()
         if response.get('cod') != 200:
             message = response.get('message', '')
-            return f'Error getting temperature for {city.title()}. Error message = {message}'
+            return render_template("index.html", message=message)
         coord = response.get('coord',{})  # Get location's informations
         if coord:
             data['lon'] = coord['lon']

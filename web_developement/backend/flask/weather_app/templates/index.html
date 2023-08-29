@@ -41,7 +41,7 @@
                 <img src="{{url_for('static', filename='img/profile.png')}}" alt="Profile picture">
             </div>
         </div>
-        {% if not data %}
+        {% if not data and not message %}
         <div class="center">
             <h1>Welcome to my small weather app. </h1> 
             <p>Test it and don't forget to make us your feedback. Thanks!</p>
@@ -49,7 +49,7 @@
         </div>
         {% endif %}
 
-       {% if data %}
+       {% if data and not message %}
         <div class="card--container">
             <h3 class="main--title">Today's data</h3>
             <div class="card--wrapper">
@@ -117,6 +117,12 @@
             </div>
         </div>
 
+        {% endif %}
+        {% if message %}
+        <div class="center">
+            <h1>Sorry no data were found for your entry. </h1> 
+           
+        </div>
         {% endif %}
 
     </div>
