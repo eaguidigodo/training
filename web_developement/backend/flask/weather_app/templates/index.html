@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block header %} Weather App {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="sidebar">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="#">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+
+
+            <li class="logout">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <span>Best</span>
+                <h2>Weather App</h2>
+            </div>
+            <div class="user--info">
+                <div class="search--box">
+                    <form action="/city" method="post">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" placeholder="Enter a city name" name="cityName" />
+                    </form>
+                </div>
+                <img src="{{url_for('static', filename='img/profile.png')}}" alt="Profile picture">
+            </div>
+        </div>
+       {% if data %}
+        <div class="card--container">
+            <h3 class="main--title">Today's data</h3>
+            <div class="card--wrapper">
+                <div class="payment--card light-red">
+                    <div class="card--header">
+                        <div class="amount">
+                            <span class="title">
+                                Longitude
+                            </span>
+                            <span class="amount--value">{{data.lon}}</span>
+                            <i class="fa-solid fa-location-dot icon dark-red"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment--card light-purple">
+                    <div class="card--header">
+                        <div class="amount">
+                            <span class="title">
+                               Latitude
+                            </span>
+                            <span class="amount--value">{{data['lat']}}</span>
+                            <i class="fa-solid fa-location-dot icon dark-purple"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment--card light-green">
+                    <div class="card--header">
+                        <div class="amount">
+                            <span class="title">
+                                Temperature
+                            </span>
+                            <span class="amount--value">{{data['temp']}} </span>
+                            <i class="fa-solid fa-temperature-three-quarters icon dark-green"></i>
+                        </div>
+                        <span class="card-detail">**** **** **** 3484 </span>
+                    </div>
+                </div>
+
+                <div class="payment--card light-blue">
+                    <div class="card--header">
+                        <div class="amount">
+                            <span class="title">
+                                Minimal temperture
+                            </span>
+                            <span class="amount--value">{{data['temp_min']}}°</span>
+                            <i class="fa-solid fa-temperature-low icon dark-blue"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment--card light-blue">
+                    <div class="card--header">
+                        <div class="amount">
+                            <span class="title">
+                                Maximal temperture
+                            </span>
+                            <span class="amount--value">{{data['temp_max']}}°</span>
+                            <i class="fa-solid fa-temperature-high icon dark-blue"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+
+
+{% endblock %}
